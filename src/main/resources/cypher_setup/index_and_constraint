@@ -1,0 +1,2 @@
+CREATE INDEX ON :MOVIE(contentTitle);
+CREATE CONSTRAINT ON (movie:MOVIE) ASSERT movie.contentTitle IS UNIQUE;

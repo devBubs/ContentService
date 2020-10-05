@@ -17,7 +17,7 @@ import java.util.Map;
 @AllArgsConstructor
 @JsonIgnoreProperties
 public class ContentDO {
-    private String contentId;
+    private long contentId;
     private String contentTitle;
     private long contentReleaseYear;
     private ContentType contentType;

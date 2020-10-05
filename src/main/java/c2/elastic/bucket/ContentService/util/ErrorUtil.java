@@ -17,16 +17,24 @@ public class ErrorUtil {
                 .body(buildGenericResponse(e));
     }
 
-    public <T> ResponseEntity<GenericResponse<T>> getFaultResponse(Exception e) {
+    public <T> ResponseEntity<GenericResponse<T>> getFaultResponse(String message) {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(buildGenericResponse(e));
+                .body(buildGenericResponse(message));
     }
 
     private <T> GenericResponse<T> buildGenericResponse(Exception e) {
-
         GenericError error = GenericError.builder()
                 .errorMessage(e.getMessage())
+                .build();
+        return GenericResponse.<T>builder()
+                .errors(Collections.singletonList(error))
+                .build();
+    }
+
+    private <T> GenericResponse<T> buildGenericResponse(String message) {
+        GenericError error = GenericError.builder()
+                .errorMessage(message)
                 .build();
         return GenericResponse.<T>builder()
                 .errors(Collections.singletonList(error))

@@ -4,9 +4,11 @@ import c2.elastic.bucket.ContentService.model.ContentBO;
 import c2.elastic.bucket.ContentService.model.ContentDO;
 import c2.elastic.bucket.ContentService.model.ContentDTO;
 import c2.elastic.bucket.ContentService.model.ContentType;
+import org.springframework.stereotype.Component;
 
-public class ContentUtil {
-    public ContentBO toBO(ContentDO contentDO){
+@Component
+public class ModelConverterUtil {
+    public ContentBO toBO(ContentDO contentDO) {
         return ContentBO.builder()
                 .contentId(contentDO.getContentId())
                 .contentTitle(contentDO.getContentTitle())
@@ -18,7 +20,7 @@ public class ContentUtil {
                 .build();
     }
 
-    public ContentBO toBO(ContentDTO contentDTO){
+    public ContentBO toBO(ContentDTO contentDTO) {
         return ContentBO.builder()
                 .contentId(contentDTO.getContentId())
                 .contentTitle(contentDTO.getContentTitle())
@@ -30,7 +32,7 @@ public class ContentUtil {
                 .build();
     }
 
-    public ContentDTO toDTO(ContentBO contentBO){
+    public ContentDTO toDTO(ContentBO contentBO) {
         return ContentDTO.builder()
                 .contentId(contentBO.getContentId())
                 .contentTitle(contentBO.getContentTitle())
@@ -42,7 +44,7 @@ public class ContentUtil {
                 .build();
     }
 
-    public ContentDO toDO(ContentBO contentBO){
+    public ContentDO toDO(ContentBO contentBO) {
         return ContentDO.builder()
                 .contentId(contentBO.getContentId())
                 .contentTitle(contentBO.getContentTitle())

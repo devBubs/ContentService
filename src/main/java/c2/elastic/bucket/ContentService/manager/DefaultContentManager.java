@@ -3,40 +3,42 @@ package c2.elastic.bucket.ContentService.manager;
 import c2.elastic.bucket.ContentService.dao.ContentDao;
 import c2.elastic.bucket.ContentService.model.ContentBO;
 import c2.elastic.bucket.ContentService.model.ContentDO;
-import c2.elastic.bucket.ContentService.util.ContentUtil;
+import c2.elastic.bucket.ContentService.util.ModelConverterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class DefaultContentManager implements ContentManager {
 
     private final ContentDao contentDao;
-    private final ContentUtil contentUtil;
+    private final ModelConverterUtil modelConverterUtil;
 
     @Autowired
-    public DefaultContentManager(ContentDao contentDao, ContentUtil contentUtil){
+    public DefaultContentManager(ContentDao contentDao, ModelConverterUtil modelConverterUtil) {
         this.contentDao = contentDao;
-        this.contentUtil = contentUtil;
+        this.modelConverterUtil = modelConverterUtil;
     }
 
     @Override
     public ContentBO createContent(ContentBO contentBO) {
-        ContentDO contentDO = contentUtil.toDO(contentBO);
+        ContentDO contentDO = modelConverterUtil.toDO(contentBO);
         contentDO = contentDao.createContent(contentDO);
-        return contentUtil.toBO(contentDO);
+        return modelConverterUtil.toBO(contentDO);
     }
 
     @Override
-    public ContentBO getContent(String contentId) {
+    public ContentBO getContent(long contentId) {
         ContentDO contentDO = contentDao.getContent(contentId);
-        return contentUtil.toBO(contentDO);
+        return modelConverterUtil.toBO(contentDO);
     }
 
     @Override
     public ContentBO updateContent(ContentBO contentBO) {
-        ContentDO contentDO = contentUtil.toDO(contentBO);
+        ContentDO contentDO = modelConverterUtil.toDO(contentBO);
         contentDO = contentDao.updateContent(contentDO);
-        return contentUtil.toBO(contentDO);
+        return modelConverterUtil.toBO(contentDO);
     }
 
     @Override

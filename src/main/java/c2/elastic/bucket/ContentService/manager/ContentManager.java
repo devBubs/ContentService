@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ContentManager {
     ContentBO createContent(ContentBO contentBO);
-    ContentBO getContent(String contentId);
+    ContentBO getContent(long contentId);
     ContentBO updateContent(ContentBO contentBO);
     List<ContentBO> searchContent();
 }
